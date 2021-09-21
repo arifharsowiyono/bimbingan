@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">latihan</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="first_name">Nama Depan</string>
+    <string name="last_name">Nama Belakang</string>
+    <string name="login_here">already have an account? Login here!</string>
+    <string name="register_here">Create a new account? Register here!</string>
+    <string name="tahun_masuk">Tahun Masuk</string>
+    <string name="nim">NIM</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email</string>
+    <string name="nim_nip">Nim Atau Nip</string>
+    <string name="selamat_datang">Selamat Datang</string>
+    <string name="logout">Logout</string>
+</resources>
