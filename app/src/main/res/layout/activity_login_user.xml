@@ -55,6 +55,8 @@
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:maxLines="1"
             android:drawableRight="@drawable/ic_pass"/>
     </com.google.android.material.textfield.TextInputLayout>
 

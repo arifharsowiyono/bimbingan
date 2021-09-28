@@ -12,14 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LoginUser"
-            android:theme="@style/Theme.Design.Light.NoActionBar" >
-        </activity>
+        <activity android:name=".Dosen.MainMenuDosen"></activity>
+        <activity
+            android:name=".LoginUser"
+            android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
         <activity
             android:name=".RegisterUser"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
-            android:name=".MainMenu"
+            android:name=".Mahasiswa.MainMenuMahasiswa"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".MainActivity"

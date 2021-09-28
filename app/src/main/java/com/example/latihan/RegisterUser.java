@@ -2,27 +2,24 @@ package com.example.latihan;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.example.latihan.DatabaseManagementSystem.Constants;
+import com.example.latihan.DatabaseManagementSystem.RequestHandler;
+import com.example.latihan.DatabaseManagementSystem.SharedPrefManager;
+import com.example.latihan.Mahasiswa.MainMenuMahasiswa;
 import com.google.android.material.textfield.TextInputEditText;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,11 +38,11 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
 
-        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+        /**if(SharedPrefManager.getInstance(this).isLoggedIn()){
             finish();
-            startActivity(new Intent(this, MainMenu.class));
+            startActivity(new Intent(this, MainMenuMahasiswa.class));
             return;
-        }
+        }**/
 
         textInputEditTextusername   = findViewById(R.id.username);
         textInputEditTextpassword   = findViewById(R.id.password);
@@ -75,7 +72,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         progressBar.setVisibility(View.VISIBLE);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                Constants.Register_URL,
+                Constants.Register_URL_WIFI_KANTOR,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

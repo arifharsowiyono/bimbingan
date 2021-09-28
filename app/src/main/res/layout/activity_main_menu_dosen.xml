@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainMenu">
+    tools:context=".Dosen.MainMenuDosen">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/selamat_datang"
         android:gravity="center"
-        android:textSize="30sp"
+        android:text="@string/selamat_datang"
         android:textColor="@color/colorAccent"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@id/nim_nip"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
@@ -25,46 +25,69 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="164dp"
         android:layout_marginRight="30dp"
+        android:gravity="center"
         android:hint="@string/nim_nip"
-        android:gravity="center"
-        android:textSize="20sp"
         android:textColor="@color/colorAccent"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/username"
-        android:layout_width="match_parent"
+        android:id="@+id/firstname"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
-        android:layout_marginRight="30dp"
+        android:gravity="right"
         android:hint="Nama Lengkap"
-        android:gravity="center"
-        android:textSize="20sp"
         android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/spasi"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nim_nip"/>
+        app:layout_constraintTop_toBottomOf="@+id/nim_nip" />
 
     <TextView
-        android:id="@+id/angkatan"
+        android:id="@+id/spasi"
+        android:layout_width="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="right"
+        android:text="   "
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/lastname"
+        app:layout_constraintStart_toEndOf="@id/firstname"
+        app:layout_constraintTop_toBottomOf="@+id/nim_nip" />
+
+    <TextView
+        android:id="@+id/lastname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="left"
+        android:hint="Nama Lengkap"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spasi"
+        app:layout_constraintTop_toBottomOf="@+id/nim_nip" />
+
+    <TextView
+        android:id="@+id/bidang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"
-        android:hint="Angkatan"
         android:gravity="center"
-        android:textSize="20sp"
+        android:hint="@string/bidang_keahlian"
         android:textColor="@color/colorAccent"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username"/>
+        app:layout_constraintTop_toBottomOf="@+id/firstname" />
 
     <TextView
         android:id="@+id/email"
@@ -73,24 +96,24 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"
-        android:hint="Email"
         android:gravity="center"
-        android:textSize="20sp"
+        android:hint="Email"
         android:textColor="@color/colorAccent"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/angkatan"/>
+        app:layout_constraintTop_toBottomOf="@+id/bidang" />
 
     <Button
         android:id="@+id/btnLogout"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_marginTop="56dp"
         android:text="@string/logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/email"/>
+        app:layout_constraintTop_toBottomOf="@id/email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

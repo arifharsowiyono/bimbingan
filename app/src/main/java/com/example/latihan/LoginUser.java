@@ -16,6 +16,11 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.latihan.DatabaseManagementSystem.Constants;
+import com.example.latihan.DatabaseManagementSystem.RequestHandler;
+import com.example.latihan.DatabaseManagementSystem.SharedPrefManager;
+import com.example.latihan.Dosen.MainMenuDosen;
+import com.example.latihan.Mahasiswa.MainMenuMahasiswa;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
@@ -38,7 +43,7 @@ public class LoginUser extends AppCompatActivity implements View.OnClickListener
 
         if(SharedPrefManager.getInstance(this).isLoggedIn()){
             finish();
-            startActivity(new Intent(this, MainMenu.class));
+            startActivity(new Intent(this, MainMenuMahasiswa.class));
             return;
         }
 
@@ -68,36 +73,76 @@ public class LoginUser extends AppCompatActivity implements View.OnClickListener
         progressBar.setVisibility(View.VISIBLE);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                Constants.Login_URL,
+                Constants.Login_URL_WIFI_KANTOR,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
                         progressBar.setVisibility(View.GONE);
 
-                        try {
+                        if(username.length()<12){
 
-                            JSONObject obj = new JSONObject(response);
-                            if(!obj.getBoolean("error")){
+                            try {
 
-                                SharedPrefManager.getInstance(getApplicationContext())
-                                        .userLogin(
-                                                obj.getInt("id"),
-                                                obj.getString("username"),
-                                                obj.getString("email")
-                                        );
-                                Toast.makeText(getApplicationContext(), "User Login Successful", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), MainMenu.class));
+                                JSONObject obj = new JSONObject(response);
+                                if(!obj.getBoolean("error")){
 
-                            }else{
+                                    SharedPrefManager.getInstance(getApplicationContext())
+                                            .userLoginMahasiswa(
+                                                    obj.getInt("id"),
+                                                    obj.getString("username"),
+                                                    obj.getString("email"),
+                                                    obj.getString("nim"),
+                                                    obj.getString("nama_depan_mahasiswa"),
+                                                    obj.getString("nama_belakang_mahasiswa"),
+                                                    obj.getInt("tahun_masuk")
+                                            );
+                                    Toast.makeText(getApplicationContext(), "User Login Successful", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(), MainMenuMahasiswa.class));
 
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                                }else{
 
+                                    Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        } else {
+
+                            try {
+
+                                JSONObject obj = new JSONObject(response);
+                                if(!obj.getBoolean("error")){
+
+                                    SharedPrefManager.getInstance(getApplicationContext())
+                                            .userLoginDosen(
+                                                    obj.getInt("id"),
+                                                    obj.getString("username"),
+                                                    obj.getString("email"),
+                                                    obj.getString("nip"),
+                                                    obj.getString("nama_depan_dosen"),
+                                                    obj.getString("nama_belakang_dosen"),
+                                                    obj.getString("bidang")
+                                            );
+                                    Toast.makeText(getApplicationContext(), "User Login Successful", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(), MainMenuDosen.class));
+
+                                }else{
+
+                                    Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
                         }
+
+
                     }
                 },
                 new Response.ErrorListener() {
