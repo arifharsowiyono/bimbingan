@@ -123,7 +123,7 @@
     public function uploadUserImage($username, $photo){
         $path = "profil_image/$username.jpeg";
         $path1 ="c:\\xampp\\htdocs\\bimbingan\\profil_image\\$username.jpeg";
-        $finalpath = "http://9.9.9.165/bimbingan/".$path;
+        $finalpath = "http://your_ip_address/bimbingan/".$path;
         $stmt = $this->con->prepare("UPDATE mahasiswa SET photo = ? WHERE nim = ?");
         $stmt->bind_param("ss", $finalpath, $username); 
         $decoded = base64_decode($photo);
