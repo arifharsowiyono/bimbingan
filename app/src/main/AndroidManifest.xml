@@ -3,6 +3,8 @@
     package="com.example.latihan">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -12,19 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Dosen.MainMenuDosen"></activity>
         <activity
             android:name=".LoginUser"
-            android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
+            android:theme="@style/AppThemeLogin"></activity>
         <activity
             android:name=".RegisterUser"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
+            android:theme="@style/AppThemeRegister"></activity>
+        <activity
+            android:name=".Dosen.MainMenuDosen"
+            android:theme="@style/AppThemeNoActionBar"></activity>
         <activity
             android:name=".Mahasiswa.MainMenuMahasiswa"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
+            android:theme="@style/AppThemeNoActionBar"></activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar">
+            android:theme="@style/AppThemeNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

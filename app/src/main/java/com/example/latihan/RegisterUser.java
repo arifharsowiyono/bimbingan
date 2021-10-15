@@ -17,6 +17,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.latihan.DatabaseManagementSystem.Constants;
 import com.example.latihan.DatabaseManagementSystem.RequestHandler;
 import com.example.latihan.DatabaseManagementSystem.SharedPrefManager;
+import com.example.latihan.Dosen.MainMenuDosen;
 import com.example.latihan.Mahasiswa.MainMenuMahasiswa;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -38,11 +39,15 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
 
-        /**if(SharedPrefManager.getInstance(this).isLoggedIn()){
+        if(SharedPrefManager.getInstance(this).getUserMahasiswa()){
             finish();
             startActivity(new Intent(this, MainMenuMahasiswa.class));
             return;
-        }**/
+        }else if(SharedPrefManager.getInstance(this).getUserDosen()) {
+            finish();
+            startActivity(new Intent(this, MainMenuDosen.class));
+            return;
+        }
 
         textInputEditTextusername   = findViewById(R.id.username);
         textInputEditTextpassword   = findViewById(R.id.password);

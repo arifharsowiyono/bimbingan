@@ -18,6 +18,8 @@ public class SharedPrefManager {
     private static final String KEY_NAMA_BELAKANG_DOSEN = "namabelakangdosen";
     private static final String KEY_TAHUN_MASUK = "tahunmasuk";
     private static final String KEY_BIDANG = "bidang";
+    private static final String KEY_PHOTO_MAHASISWA = "photomahasiswa";
+    private static final String KEY_PHOTO_DOSEN = "photodosen";
 
     private SharedPrefManager(Context context) {
         mCtx = context;
@@ -32,7 +34,7 @@ public class SharedPrefManager {
     }
 
     public boolean userLoginMahasiswa(int id, String username, String email, String nim,
-                             String nama_depan_mahasiswa, String nama_Belakang_mahasiswa, int tahun_masuk)
+                             String nama_depan_mahasiswa, String nama_Belakang_mahasiswa, String tahun_masuk, String photo_mahasiswa)
     {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -42,36 +44,46 @@ public class SharedPrefManager {
         editor.putString(KEY_NIM, nim);
         editor.putString(KEY_NAMA_DEPAN_MAHASISWA, nama_depan_mahasiswa);
         editor.putString(KEY_NAMA_BELAKANG_MAHASISWA, nama_Belakang_mahasiswa);
-        editor.putInt(KEY_TAHUN_MASUK, tahun_masuk);
+        editor.putString(KEY_TAHUN_MASUK, tahun_masuk);
+        editor.putString(KEY_PHOTO_MAHASISWA, photo_mahasiswa);
         editor.apply();
         return true;
 
     }
 
     public boolean userLoginDosen(int id, String username, String email, String nip,
-                             String nama_depan_dosen, String nama_Belakang_dosen, String bidang)
+                             String nama_depan_dosen, String nama_Belakang_dosen, String bidang, String photo_dosen)
     {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(KEY_ID, id);
-        editor.putString(KEY_EMAIL, email);
-        editor.putString(KEY_USERNAME, username);
         editor.putString(KEY_NIP, nip);
         editor.putString(KEY_NAMA_DEPAN_DOSEN, nama_depan_dosen);
         editor.putString(KEY_NAMA_BELAKANG_DOSEN, nama_Belakang_dosen);
         editor.putString(KEY_BIDANG, bidang);
+        editor.putString(KEY_PHOTO_DOSEN, photo_dosen);
         editor.apply();
         return true;
 
     }
 
-    public boolean isLoggedIn(){
+    //User session Mahasiswa
+    public boolean getUserMahasiswa(){
 
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        if(sharedPreferences.getString(KEY_USERNAME, null) != null){
+        if(sharedPreferences.getString(KEY_NIM, null) != null){
             return true;
         }
+        return false;
 
+    }
+
+    //User session Dosen
+    public boolean getUserDosen(){
+
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        if(sharedPreferences.getString(KEY_NIP, null) != null){
+            return true;
+        }
         return false;
 
     }
@@ -94,6 +106,8 @@ public class SharedPrefManager {
 
     }
 
+
+
     //Ambil firstname di table mahasiswa
     public String getFirstnameMahasiswa(){
 
@@ -111,10 +125,10 @@ public class SharedPrefManager {
     }
 
     //Ambil tahun_masuk di table mahasiswa
-    public int getTahunMasuk(){
+    public String getTahunMasuk(){
 
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getInt(KEY_TAHUN_MASUK, 0);
+        return sharedPreferences.getString(KEY_TAHUN_MASUK, null);
 
     }
 
@@ -157,5 +171,21 @@ public class SharedPrefManager {
         return sharedPreferences.getString(KEY_EMAIL, null);
 
     }
+
+    public String getUrlPhotoMahasiswa(){
+
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_PHOTO_MAHASISWA, null);
+
+    }
+
+    public String getUrlPhotoDosen(){
+
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_PHOTO_DOSEN, null);
+
+    }
+
+
 
 }

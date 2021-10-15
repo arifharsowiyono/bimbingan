@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary2"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/btnToLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.Button.Colored"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@android:color/white"
         android:layout_marginTop="200dp"
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +23,8 @@
         android:id="@+id/btnToRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.Button.Colored"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@android:color/white"
         android:layout_marginTop="56dp"
         android:text="@string/register"
         app:layout_constraintEnd_toEndOf="parent"

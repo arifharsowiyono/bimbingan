@@ -2,9 +2,11 @@ package com.example.latihan;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -41,9 +43,13 @@ public class LoginUser extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_user);
 
-        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+        if(SharedPrefManager.getInstance(this).getUserMahasiswa()){
             finish();
             startActivity(new Intent(this, MainMenuMahasiswa.class));
+            return;
+        }else if(SharedPrefManager.getInstance(this).getUserDosen()) {
+            finish();
+            startActivity(new Intent(this, MainMenuDosen.class));
             return;
         }
 
@@ -95,19 +101,21 @@ public class LoginUser extends AppCompatActivity implements View.OnClickListener
                                                     obj.getString("nim"),
                                                     obj.getString("nama_depan_mahasiswa"),
                                                     obj.getString("nama_belakang_mahasiswa"),
-                                                    obj.getInt("tahun_masuk")
+                                                    obj.getString("tahun_masuk"),
+                                                    obj.getString("photo_mahasiswa")
                                             );
                                     Toast.makeText(getApplicationContext(), "User Login Successful", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(getApplicationContext(), MainMenuMahasiswa.class));
 
                                 }else{
-
+                                    Log.i("Main","error");
                                     Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
                                 }
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                                Log.i("Main", String.valueOf(e));
                             }
 
                         } else {
@@ -125,7 +133,8 @@ public class LoginUser extends AppCompatActivity implements View.OnClickListener
                                                     obj.getString("nip"),
                                                     obj.getString("nama_depan_dosen"),
                                                     obj.getString("nama_belakang_dosen"),
-                                                    obj.getString("bidang")
+                                                    obj.getString("bidang"),
+                                                    obj.getString("photo_dosen")
                                             );
                                     Toast.makeText(getApplicationContext(), "User Login Successful", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(getApplicationContext(), MainMenuDosen.class));
